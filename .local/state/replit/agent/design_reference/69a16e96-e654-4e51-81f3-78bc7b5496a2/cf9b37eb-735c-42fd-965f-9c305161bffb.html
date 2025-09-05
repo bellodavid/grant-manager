@@ -1,0 +1,599 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Grant Management System - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'inter': ['Inter', 'sans-serif'],
+                },
+                colors: {
+                    primary: {
+                        50: '#e3f2fd',
+                        100: '#bbdefb',
+                        500: '#1976d2',
+                        600: '#1565c0',
+                        700: '#0d47a1'
+                    },
+                    secondary: {
+                        500: '#00acc1',
+                        600: '#00838f'
+                    },
+                    accent: {
+                        500: '#ff9800',
+                        600: '#f57c00'
+                    }
+                }
+            }
+        }
+    };
+    </script>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- @COMPONENT: Navigation [Fixed sidebar navigation] -->
+    <div class="flex h-screen bg-gray-50">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg flex flex-col">
+            <!-- Logo/Header -->
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-lg"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-lg font-semibold text-gray-900">RGMA</h1>
+                        <p class="text-sm text-gray-500">Grant Management</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Info -->
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                        <span class="text-primary-600 text-sm font-medium" data-bind="user.initials">JD</span>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-900" data-bind="user.name">Dr. Jane Smith</p>
+                        <p class="text-xs text-gray-500" data-bind="user.role">Grant Manager</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="flex-1 pt-4">
+                <div class="px-4 space-y-1">
+                    <a href="#" class="bg-primary-50 text-primary-700 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-tachometer-alt mr-3 text-primary-500"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-bullhorn mr-3 text-gray-400"></i>
+                        Grant Calls
+                    </a>
+                    <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-file-alt mr-3 text-gray-400"></i>
+                        Proposals
+                    </a>
+                    <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-users mr-3 text-gray-400"></i>
+                        Reviews
+                    </a>
+                    <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-trophy mr-3 text-gray-400"></i>
+                        Awards
+                    </a>
+                    <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-chart-bar mr-3 text-gray-400"></i>
+                        Reports
+                    </a>
+                    <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                        <i class="fas fa-folder mr-3 text-gray-400"></i>
+                        Documents
+                    </a>
+                </div>
+                
+                <!-- Admin Section -->
+                <div class="mt-8 px-4">
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Administration</h3>
+                    <div class="mt-2 space-y-1">
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                            <i class="fas fa-users-cog mr-3 text-gray-400"></i>
+                            Users & Roles
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                            <i class="fas fa-cog mr-3 text-gray-400"></i>
+                            Settings
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:navigateTo">
+                            <i class="fas fa-history mr-3 text-gray-400"></i>
+                            Audit Log
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Logout -->
+            <div class="p-4 border-t border-gray-200">
+                <button class="w-full text-gray-600 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" data-event="click:logout">
+                    <i class="fas fa-sign-out-alt mr-3 text-gray-400"></i>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: Navigation -->
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- @COMPONENT: Header [Top navigation bar with search and notifications] -->
+            <header class="bg-white shadow-sm border-b border-gray-200">
+                <div class="flex items-center justify-between px-6 py-4">
+                    <div class="flex-1 flex items-center">
+                        <h2 class="text-2xl font-semibold text-gray-900">Dashboard</h2>
+                        <div class="ml-6 flex items-center">
+                            <div class="relative">
+                                <input type="text" placeholder="Search proposals, calls, researchers..." 
+                                       class="w-96 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                                       data-implementation="Implement full-text search across all entities">
+                                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 text-gray-400 hover:text-gray-500" data-event="click:showNotifications">
+                            <i class="fas fa-bell text-lg"></i>
+                            <span class="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center" data-bind="notifications.unreadCount">3</span>
+                        </button>
+                        
+                        <!-- Help -->
+                        <button class="p-2 text-gray-400 hover:text-gray-500" data-event="click:showHelp">
+                            <i class="fas fa-question-circle text-lg"></i>
+                        </button>
+                        
+                        <!-- User Menu -->
+                        <div class="relative">
+                            <button class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500" data-event="click:toggleUserMenu">
+                                <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                                    <span class="text-primary-600 text-sm font-medium" data-bind="user.initials">JS</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- @END_COMPONENT: Header -->
+
+            <!-- @COMPONENT: DashboardContent [Main dashboard content area] -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Key Metrics Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- @MAP: metrics.map(metric => ( -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-alt text-primary-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Active Proposals</p>
+                                <p class="text-2xl font-semibold text-gray-900" data-bind="metrics.activeProposals">127</p>
+                                <p class="text-sm text-green-600">+12% from last month</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-clock text-secondary-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Pending Reviews</p>
+                                <p class="text-2xl font-semibold text-gray-900" data-bind="metrics.pendingReviews">43</p>
+                                <p class="text-sm text-amber-600">8 overdue</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-trophy text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Awards YTD</p>
+                                <p class="text-2xl font-semibold text-gray-900" data-bind="metrics.awardsYTD">89</p>
+                                <p class="text-sm text-green-600">$2.4M awarded</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-bullhorn text-accent-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Open Calls</p>
+                                <p class="text-2xl font-semibold text-gray-900" data-bind="metrics.openCalls">12</p>
+                                <p class="text-sm text-gray-500">3 closing soon</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button class="bg-primary-500 hover:bg-primary-600 text-white p-4 rounded-lg flex items-center transition-colors" data-event="click:createCall">
+                            <i class="fas fa-plus mr-3"></i>
+                            Create New Call
+                        </button>
+                        <button class="bg-secondary-500 hover:bg-secondary-600 text-white p-4 rounded-lg flex items-center transition-colors" data-event="click:assignReviewers">
+                            <i class="fas fa-user-plus mr-3"></i>
+                            Assign Reviewers
+                        </button>
+                        <button class="bg-accent-500 hover:bg-accent-600 text-white p-4 rounded-lg flex items-center transition-colors" data-event="click:generateReports">
+                            <i class="fas fa-chart-line mr-3"></i>
+                            Generate Reports
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Current Calls -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Recent Activity -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                        </div>
+                        <div class="p-0">
+                            <!-- @MAP: recentActivity.map(activity => ( -->
+                            <div class="px-6 py-4 border-b border-gray-100 last:border-b-0">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-file-alt text-primary-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm text-gray-900" data-mock="true">
+                                            <span class="font-medium" data-bind="activity.user">Dr. Sarah Johnson</span> 
+                                            submitted proposal for <span class="font-medium" data-bind="activity.call">"Advanced AI Research Initiative"</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500" data-bind="activity.timestamp">2 hours ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-6 py-4 border-b border-gray-100 last:border-b-0">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-check text-green-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm text-gray-900" data-mock="true">
+                                            Review completed for proposal <span class="font-medium" data-bind="activity.proposal">"Sustainable Energy Solutions"</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500" data-bind="activity.timestamp">4 hours ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-6 py-4 border-b border-gray-100 last:border-b-0">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-bullhorn text-accent-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm text-gray-900" data-mock="true">
+                                            New call <span class="font-medium" data-bind="activity.call">"Climate Change Research Fund"</span> published
+                                        </p>
+                                        <p class="text-xs text-gray-500" data-bind="activity.timestamp">1 day ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t border-gray-200">
+                            <button class="text-primary-600 hover:text-primary-700 text-sm font-medium" data-event="click:viewAllActivity">
+                                View all activity →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Current Calls -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-gray-900">Current Calls</h3>
+                                <button class="text-primary-600 hover:text-primary-700 text-sm font-medium" data-event="click:manageAll">
+                                    Manage All
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-0">
+                            <!-- @MAP: currentCalls.map(call => ( -->
+                            <div class="px-6 py-4 border-b border-gray-100 last:border-b-0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-medium text-gray-900" data-bind="call.title" data-mock="true">Advanced AI Research Initiative</h4>
+                                        <div class="mt-1 flex items-center text-xs text-gray-500">
+                                            <span data-bind="call.proposalCount" data-mock="true">23 proposals</span>
+                                            <span class="mx-2">•</span>
+                                            <span data-bind="call.budget" data-mock="true">$500K budget</span>
+                                        </div>
+                                        <div class="mt-2 flex items-center">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                Open
+                                            </span>
+                                            <span class="ml-2 text-xs text-gray-500" data-bind="call.deadline" data-mock="true">Closes in 12 days</span>
+                                        </div>
+                                    </div>
+                                    <button class="ml-4 text-gray-400 hover:text-gray-600" data-event="click:manageCall" data-implementation="Navigate to call management page">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="px-6 py-4 border-b border-gray-100 last:border-b-0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-medium text-gray-900" data-bind="call.title" data-mock="true">Sustainable Energy Solutions</h4>
+                                        <div class="mt-1 flex items-center text-xs text-gray-500">
+                                            <span data-bind="call.proposalCount" data-mock="true">15 proposals</span>
+                                            <span class="mx-2">•</span>
+                                            <span data-bind="call.budget" data-mock="true">$300K budget</span>
+                                        </div>
+                                        <div class="mt-2 flex items-center">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                                Review Phase
+                                            </span>
+                                            <span class="ml-2 text-xs text-gray-500" data-bind="call.deadline" data-mock="true">Reviews due in 5 days</span>
+                                        </div>
+                                    </div>
+                                    <button class="ml-4 text-gray-400 hover:text-gray-600" data-event="click:manageCall">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="px-6 py-4 border-b border-gray-100 last:border-b-0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-medium text-gray-900" data-bind="call.title" data-mock="true">Medical Innovation Fund</h4>
+                                        <div class="mt-1 flex items-center text-xs text-gray-500">
+                                            <span data-bind="call.proposalCount" data-mock="true">8 proposals</span>
+                                            <span class="mx-2">•</span>
+                                            <span data-bind="call.budget" data-mock="true">$750K budget</span>
+                                        </div>
+                                        <div class="mt-2 flex items-center">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                Closing Soon
+                                            </span>
+                                            <span class="ml-2 text-xs text-gray-500" data-bind="call.deadline" data-mock="true">Closes in 3 days</span>
+                                        </div>
+                                    </div>
+                                    <button class="ml-4 text-gray-400 hover:text-gray-600" data-event="click:manageCall">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Deadlines -->
+                <div class="mt-8">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Upcoming Deadlines</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Call/Proposal</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PI/Reviewer</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="relative px-6 py-3"><span class="sr-only">Actions</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <!-- @MAP: upcomingDeadlines.map(deadline => ( -->
+                                    <tr data-mock="true">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                Submission
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-bind="deadline.title">Climate Change Research Fund</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-bind="deadline.person">Various PIs</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-bind="deadline.dueDate">Dec 15, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                3 days left
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <button class="text-primary-600 hover:text-primary-900" data-event="click:viewDetails">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-mock="true">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                                Review
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-bind="deadline.title">AI-ML-2024-001</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-bind="deadline.person">Dr. Michael Chen</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-bind="deadline.dueDate">Dec 20, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                                8 days left
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <button class="text-primary-600 hover:text-primary-900" data-event="click:viewDetails">View</button>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-mock="true">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                Report
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-bind="deadline.title">Sustainable Energy - Milestone 2</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-bind="deadline.person">Dr. Lisa Park</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-bind="deadline.dueDate">Dec 28, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                16 days left
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <button class="text-primary-600 hover:text-primary-900" data-event="click:viewDetails">View</button>
+                                        </td>
+                                    </tr>
+                                    <!-- @END_MAP )) -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- @END_COMPONENT: DashboardContent -->
+        </div>
+    </div>
+
+    <!-- @COMPONENT: NotificationToast [Toast notification system] -->
+    <div id="notification-container" class="fixed top-4 right-4 z-50 space-y-2" style="display: none;">
+        <!-- @FUNCTIONALITY: Toast notifications will be dynamically inserted here -->
+    </div>
+    <!-- @END_COMPONENT: NotificationToast -->
+
+    <!-- @COMPONENT: Modal [Generic modal for dialogs] -->
+    <div id="modal-overlay" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-40" data-event="click:closeModal">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full" data-event="click:stopPropagation">
+                <div class="bg-white px-4 pt-5 pb-4">
+                    <div class="flex items-start">
+                        <div class="mt-3 text-center w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Modal Title
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500" id="modal-content">
+                                    Modal content goes here
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 flex justify-end space-x-2">
+                    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50" data-event="click:closeModal">
+                        Cancel
+                    </button>
+                    <button type="button" class="bg-primary-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-primary-700" id="modal-confirm-btn">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: Modal -->
+
+    <script>
+        // @STATE: All interactive states should be managed in React
+        // @FUNCTIONALITY: Dashboard functionality placeholders
+        
+        (function() {
+            // TODO: Implement React state management for all dashboard interactions
+            // TODO: Implement API calls for real data binding
+            // TODO: Implement real-time notifications
+            // TODO: Implement proper routing and navigation
+            
+            // Basic interaction placeholders for demo
+            const simulateInteraction = (action) => {
+                console.log(`Action triggered: ${action}`);
+                // In React implementation, these would be proper event handlers
+            };
+
+            // Mock notification system
+            const showNotification = (message, type = 'info') => {
+                const container = document.getElementById('notification-container');
+                const notification = document.createElement('div');
+                notification.className = `max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden`;
+                notification.innerHTML = `
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-info-circle text-blue-400"></i>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                <p class="text-sm font-medium text-gray-900">${message}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(notification);
+                container.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.remove();
+                    if (container.children.length === 0) {
+                        container.style.display = 'none';
+                    }
+                }, 3000);
+            };
+
+            // Demo interactions
+            document.addEventListener('click', (e) => {
+                const target = e.target.closest('[data-event]');
+                if (target) {
+                    const event = target.getAttribute('data-event');
+                    const [eventType, handler] = event.split(':');
+                    
+                    if (eventType === 'click') {
+                        e.preventDefault();
+                        simulateInteraction(handler);
+                        
+                        // Show demo notification for some actions
+                        if (handler === 'createCall') {
+                            showNotification('Navigate to Create Call wizard');
+                        } else if (handler === 'assignReviewers') {
+                            showNotification('Navigate to Reviewer Assignment page');
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
